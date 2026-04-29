@@ -1,0 +1,11 @@
+venv/
+.vscode/
+train_images/
+cleaned_dataset_final/
+*.csv
+*.ipynb
+users.db
+*.pdf
+*.docx
+*.pptx
+__pycache__/

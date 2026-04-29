@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(135deg, #5cc3c6, #3f7fa6);
+        }
+
+        .container {
+            width: 900px;
+            margin: 60px auto;
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .left {
+            width: 40%;
+            background: #2f6281;
+            color: white;
+            padding: 40px;
+        }
+
+        .left h2 {
+            margin-bottom: 20px;
+        }
+
+        .left p {
+            line-height: 1.6;
+        }
+
+        .right {
+            width: 60%;
+            background: white;
+            padding: 30px;
+        }
+
+        h2 {
+            color: #3f7fa6;
+        }
+
+        input,
+        select {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .row {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            background: #3f7fa6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #2f6281;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let pass = document.getElementById("password").value;
+            let confirm = document.getElementById("confirm").value;
+
+            if (pass !== confirm) {
+                document.getElementById("error").innerText = "Passwords do not match!";
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LEFT SIDE -->
+        <div class="left">
+            <h2>DR Detection System</h2>
+            <p>
+                Register to access the diabetic retinopathy detection system.
+                Upload retinal images and receive instant analysis with medical guidance.
+            </p>
+
+            <br><br>
+
+            <a href="/">
+                <button>Already have account?</button>
+            </a>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="right">
+            <h2>Create Account</h2>
+
+            <form method="POST" onsubmit="return validateForm()">
+
+                <input type="text" name="username" placeholder="Username" required>
+
+                <input type="text" name="name" placeholder="Full Name" required>
+
+                <input type="email" name="email" placeholder="Email" required>
+
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+
+                <div class="row">
+                    <input type="text" name="age" placeholder="Age" pattern="[0-9]+" required>
+
+                    <select name="gender" required>
+                        <option value="">Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <select name="diabetic" required>
+                        <option value="">Diabetic?</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+
+                    <input type="number" name="duration" placeholder="Years (if diabetic)">
+                </div>
+
+                <input type="password" id="password" name="password" placeholder="Password" required>
+
+                <input type="password" id="confirm" placeholder="Confirm Password" required>
+
+                <div class="error">
+                    {% if error %}
+                        {{ error }}
+                    {% endif %}
+                </div>
+
+                <br>
+
+                <button type="submit">Register</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
